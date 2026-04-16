@@ -1,92 +1,36 @@
-# PaiseTrack — Expense Tracker
 
-A complete personal finance tracker built with React + Vite + React Router. Features authentication, full CRUD for transactions, category breakdown, charts, and settings — all persisted in `localStorage`.
+# Expense Tracker AI Project
 
----
-
-## Pages
-
-| Route | Page | Auth |
-|-------|------|------|
-| `/login` | Login | Public |
-| `/register` | Register | Public |
-| `/home` | Dashboard | Protected |
-| `/transactions` | Full transaction list | Protected |
-| `/add` | Add income/expense | Protected |
-| `/categories` | Spending breakdown | Protected |
-| `/settings` | Profile & logout | Protected |
-
----
-
-## Quick Start
-# 2. Install
-npm install
-
-# 3. Run dev server
-npm run dev
-```
-
-Open **http://localhost:5173**
-
----
-
-## Demo Account
-
-> **Email:** User@example.com  
-> **Password:** demo1234
-
-Or click "Try demo account" on the login page.
-
----
-
-## Project Structure
-
-```
-src/
-├── context/
-│   ├── AuthContext.jsx       # Login, register, logout (localStorage)
-│   └── TxContext.jsx         # Transaction state + derived data
-├── components/
-│   ├── BottomNav.jsx         # App navigation bar
-│   └── ProtectedRoute.jsx    # Auth guard
-├── pages/
-│   ├── LoginPage.jsx
-│   ├── RegisterPage.jsx
-│   ├── AuthPage.module.css
-│   ├── HomePage.jsx          # Dashboard
-│   ├── HomePage.module.css
-│   ├── TransactionsPage.jsx  # Filterable list + delete
-│   ├── TransactionsPage.module.css
-│   ├── AddTransactionPage.jsx
-│   ├── AddTransactionPage.module.css
-│   ├── CategoriesPage.jsx    # Donut chart + breakdown
-│   ├── CategoriesPage.module.css
-│   ├── SettingsPage.jsx      # Profile, preferences, logout
-│   └── SettingsPage.module.css
-├── constants.js              # Categories, icons, formatters, seed data
-├── index.css                 # Global tokens + animations
-├── App.jsx                   # Router + providers
-└── main.jsx
-```
+## Overview
+Expense Tracker AI is a full-stack web application designed to help users manage and track their daily expenses efficiently. It provides a simple and interactive interface to add, view, and analyze expenses, helping users maintain better financial discipline. The application also includes AI-based insights to understand spending patterns.
 
 ---
 
 ## Features
-
-- **Auth** — Register, login, logout with localStorage persistence. Each user has their own transaction data.
-- **Dashboard** — Balance hero, stats, monthly bar chart, recent transactions, top categories
-- **Transactions** — Full list grouped by date, search, type filter, delete with confirmation
-- **Add Transaction** — Big amount input, category picker with icons, note field
-- **Categories** — SVG donut chart + sorted breakdown with percentages
-- **Settings** — Profile info, preferences, data management, sign out
-- **Dark mode ready** — CSS variables used throughout (add `prefers-color-scheme: dark` overrides to `index.css`)
+- User authentication (Login & Register)
+- Add, edit, and delete expenses
+- Categorize expenses (Food, Travel, Shopping, etc.)
+- Dashboard with expense summary
+- Monthly and category-based analytics
+- AI-based spending insights
+- Group expense management
+- Transaction history tracking
+- Responsive UI for mobile and desktop
+- Dark theme support
 
 ---
 
 ## Tech Stack
+- Frontend: React, Vite, JavaScript, HTML, CSS
+- State Management: React Hooks / Context API
+- Backend: Node.js / Express (if used)
+- Database: MongoDB (if used)
+- Styling: CSS / Tailwind (if used)
 
-- React 18
-- React Router v6
-- Vite 5
-- CSS Modules
-- localStorage (no backend required)
+---
+
+## Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/singhjesika/Expense-tracker-AI-project.git
