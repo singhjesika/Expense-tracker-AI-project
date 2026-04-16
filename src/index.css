@@ -10,69 +10,69 @@
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Outfit', sans-serif;
 
-  --ink:     #18181A;
-  --ink2:    #52525B;
-  --ink3:    #A1A1AA;
-  --ink4:    #D4D4D8;
+  --ink: #18181A;
+  --ink2: #52525B;
+  --ink3: #A1A1AA;
+  --ink4: #D4D4D8;
 
   --text: var(--ink);
   --text2: var(--ink2);
   --text3: var(--ink3);
 
-  --bg:      #F4F2EE;
+  --bg: #F4F2EE;
   --surface: #FFFFFF;
-  --surface2:#EFECE6;
-  --surface3:#E8E4DC;
+  --surface2: #EFECE6;
+  --surface3: #E8E4DC;
 
-  --teal:    #1D9E75;
-  --teal-l:  #E1F5EE;
-  --teal-d:  #0F6E56;
+  --teal: #1D9E75;
+  --teal-l: #E1F5EE;
+  --teal-d: #0F6E56;
 
-  --coral:   #D85A30;
+  --coral: #D85A30;
   --coral-l: #FAECE7;
   --coral-d: #993C1D;
 
-  --amber:   #BA7517;
+  --amber: #BA7517;
   --amber-l: #FAEEDA;
   --amber-d: #633806;
 
-  --border:  rgba(24,24,26,0.08);
+  --border: rgba(24,24,26,0.08);
   --border2: rgba(24,24,26,0.16);
 
-  --r:   10px;
-  --r2:  16px;
-  --r3:  24px;
+  --r: 10px;
+  --r2: 16px;
+  --r3: 24px;
   --nav: 64px;
 }
 
 .dark {
-  --ink:     #FFFFFF;
-  --ink2:    #E2E8F0;
-  --ink3:    #94A3B8;
-  --ink4:    #64748B;
+  --ink: #FFFFFF;
+  --ink2: #E2E8F0;
+  --ink3: #94A3B8;
+  --ink4: #64748B;
 
   --text: var(--ink);
   --text2: var(--ink2);
   --text3: var(--ink3);
 
-  --bg:      #020617;
+  --bg: #020617;
   --surface: #0F172A;
-  --surface2:#1E293B;
-  --surface3:#334155;
+  --surface2: #1E293B;
+  --surface3: #334155;
 
-  --teal:    #22C55E;
-  --teal-l:  #052E1B;
-  --teal-d:  #16A34A;
+  --teal: #22C55E;
+  --teal-l: #052E1B;
+  --teal-d: #16A34A;
 
-  --coral:   #F87171;
+  --coral: #F87171;
   --coral-l: #3F1D1D;
   --coral-d: #EF4444;
 
-  --amber:   #FACC15;
+  --amber: #FACC15;
   --amber-l: #422006;
   --amber-d: #EAB308;
 
-  --border:  rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.08);
   --border2: rgba(255,255,255,0.15);
 }
 
@@ -87,15 +87,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#root { height: 100%; }
+#root {
+  height: 100%;
+}
 
-/* FIX: All text visible in dark mode */
 h1, h2, h3, h4, h5, h6,
 p, span, li, div {
   color: var(--text);
 }
 
-/* FIX: charts text */
 svg text {
   fill: var(--text);
 }
@@ -113,29 +113,28 @@ svg text {
   border-radius: 2px;
 }
 
-/* animations */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to   { opacity: 1; }
+  to { opacity: 1; }
 }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(16px); }
-  to   { opacity: 1; transform: translateX(0); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.anim-fade-up  { animation: fadeUp 0.40s ease both; }
-.anim-fade-in  { animation: fadeIn 0.30s ease both; }
+.anim-fade-up { animation: fadeUp 0.40s ease both; }
+.anim-fade-in { animation: fadeIn 0.30s ease both; }
 .anim-slide-in { animation: slideIn 0.35s ease both; }
 .anim-scale-in { animation: scaleIn 0.30s ease both; }
 
@@ -163,7 +162,9 @@ svg text {
 
 .bottom-nav {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: var(--nav);
   background: var(--surface);
   border-top: 0.5px solid var(--border2);
@@ -187,11 +188,18 @@ svg text {
   color: var(--text3);
 }
 
-.nav-item:hover { background: var(--surface2); }
+.nav-item:hover {
+  background: var(--surface2);
+}
 
-.nav-item.active { color: var(--teal); }
+.nav-item.active {
+  color: var(--teal);
+}
 
-.nav-item svg { width: 22px; height: 22px; }
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+}
 
 .nav-label {
   font-size: 10px;
@@ -232,7 +240,9 @@ svg text {
   border: none;
 }
 
-.btn:active { transform: scale(0.98); }
+.btn:active {
+  transform: scale(0.98);
+}
 
 .btn-primary {
   background: var(--ink);
@@ -294,4 +304,26 @@ svg text {
   text-align: center;
   padding: 3rem 1rem;
   color: var(--text3);
+}
+
+.group-form-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-form-inner {
+  background: var(--surface);
+  color: var(--text);
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+  padding: 20px 16px 28px;
+  max-height: 85vh;
+  overflow-y: auto;
+  margin: 0 16px;
 }
