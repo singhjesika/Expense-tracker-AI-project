@@ -75,12 +75,12 @@ export default function AnalyticsPage() {
     padding: '14px',
     border: '1px solid var(--border)',
     color: 'var(--ink1)',
+    minWidth: 260
   }
 
   return (
     <div className="page-shell" style={{ background: 'var(--bg)' }}>
 
-      {/* HEADER */}
       <div style={{
         maxWidth: 1100,
         margin: '0 auto',
@@ -118,17 +118,15 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* GRID */}
       <div style={{
         maxWidth: 1100,
         margin: '0 auto',
         padding: 12,
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 12
+        display: 'flex',
+        gap: 16,
+        overflowX: 'auto'
       }}>
 
-        {/* MONTHLY */}
         <div style={cardStyle}>
           <div style={{ marginBottom: 10, fontWeight: 600 }}>📈 Monthly Trends</div>
 
@@ -151,7 +149,6 @@ export default function AnalyticsPage() {
           </ResponsiveContainer>
         </div>
 
-        {/* PIE */}
         <div style={cardStyle}>
           <div style={{ marginBottom: 10, fontWeight: 600 }}>🍩 Category</div>
 
@@ -174,7 +171,6 @@ export default function AnalyticsPage() {
           </ResponsiveContainer>
         </div>
 
-        {/* HEATMAP */}
         <div style={cardStyle}>
           <div style={{ marginBottom: 10, fontWeight: 600 }}>🔥 Heatmap</div>
 
@@ -196,7 +192,6 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        {/* WATERFALL */}
         <div style={cardStyle}>
           <div style={{ marginBottom: 10, fontWeight: 600 }}>💧 Net Flow</div>
 

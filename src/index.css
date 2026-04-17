@@ -85,6 +85,7 @@ html, body {
 body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  background: linear-gradient(135deg, var(--bg), var(--surface2));
 }
 
 #root {
@@ -104,10 +105,6 @@ svg text {
   width: 4px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 ::-webkit-scrollbar-thumb {
   background: var(--border2);
   border-radius: 2px;
@@ -118,33 +115,7 @@ svg text {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(16px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 .anim-fade-up { animation: fadeUp 0.40s ease both; }
-.anim-fade-in { animation: fadeIn 0.30s ease both; }
-.anim-slide-in { animation: slideIn 0.35s ease both; }
-.anim-scale-in { animation: scaleIn 0.30s ease both; }
-
-.d1 { animation-delay: 0.05s; }
-.d2 { animation-delay: 0.10s; }
-.d3 { animation-delay: 0.15s; }
-.d4 { animation-delay: 0.20s; }
-.d5 { animation-delay: 0.25s; }
-.d6 { animation-delay: 0.30s; }
-.d7 { animation-delay: 0.35s; }
 
 .page-shell {
   display: flex;
@@ -158,6 +129,7 @@ svg text {
   margin: 0 auto;
   width: 100%;
   padding: 1.5rem 1.25rem calc(var(--nav) + 2rem);
+  animation: fadeUp 0.4s ease;
 }
 
 .bottom-nav {
@@ -172,7 +144,8 @@ svg text {
   align-items: center;
   justify-content: space-around;
   z-index: 100;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -8px 25px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
 }
 
 .nav-item {
@@ -183,28 +156,13 @@ svg text {
   cursor: pointer;
   padding: 6px 16px;
   border-radius: var(--r);
-  transition: background 0.15s;
   text-decoration: none;
   color: var(--text3);
 }
 
-.nav-item:hover {
-  background: var(--surface2);
-}
-
 .nav-item.active {
   color: var(--teal);
-}
-
-.nav-item svg {
-  width: 22px;
-  height: 22px;
-}
-
-.nav-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  background: var(--surface2);
 }
 
 .card {
@@ -213,117 +171,47 @@ svg text {
   border-radius: var(--r2);
   padding: 1.25rem;
   margin-bottom: 1rem;
-}
-
-.card-title {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   height: 46px;
-  padding: 0 1.5rem;
   border-radius: var(--r2);
-  font-family: var(--font-body);
   font-size: 15px;
-  font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
   border: none;
-}
-
-.btn:active {
-  transform: scale(0.98);
-}
-
-.btn-primary {
-  background: var(--ink);
-  color: var(--surface);
-  width: 100%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .btn-teal {
-  background: var(--teal);
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
   color: #fff;
-  width: 100%;
-}
-
-.btn-ghost {
-  background: transparent;
-  border: 0.5px solid var(--border2);
-  color: var(--text2);
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text2);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   height: 46px;
-  padding: 0 14px;
-  border: 0.5px solid var(--border2);
   border-radius: var(--r);
+  border: 0.5px solid var(--border2);
   background: var(--surface);
   color: var(--text);
-  font-family: var(--font-body);
-  font-size: 15px;
-  outline: none;
 }
 
-.form-group textarea {
-  height: auto;
-  padding: 12px 14px;
-  resize: none;
-}
-
-.form-error {
-  font-size: 12px;
-  color: var(--coral);
+.form-group input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-l);
 }
 
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
-  color: var(--text3);
+  font-size: 15px;
+  color: var(--text2);
+  opacity: 1;
 }
 
-.group-form-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.group-form-inner {
-  background: var(--surface);
-  color: var(--text);
-  width: 100%;
-  max-width: 480px;
-  border-radius: 16px;
-  padding: 20px 16px 28px;
-  max-height: 85vh;
-  overflow-y: auto;
-  margin: 0 16px;
+.dark .empty-state {
+  color: #F1F5F9;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }

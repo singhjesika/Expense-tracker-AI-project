@@ -63,7 +63,6 @@ export default function GroupsPage() {
       <div className="page-shell" style={{ background: 'var(--bg,#f5f5f5)' }}>
         <div style={{ maxWidth: 480, margin: '0 auto', padding: '0 0 80px' }}>
 
-          {/* ── Header ── */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '20px 20px 16px',
@@ -85,7 +84,6 @@ export default function GroupsPage() {
                 </svg>
               </button>
               <div>
-                {/* ✅ Dark mode fix */}
                 <div className="header-title">Split Expenses</div>
                 <div style={{ fontSize: 12, color: 'var(--ink3,#999)' }}>
                   Groups & shared bills
@@ -102,7 +100,6 @@ export default function GroupsPage() {
             >+ Group</button>
           </div>
 
-          {/* ── Summary bar ── */}
           {groups.length > 0 && (
             <div style={{ margin: '12px 16px 0', display: 'flex', gap: 10 }}>
               <div style={{ flex: 1, background: '#fef0eb', borderRadius: 12, padding: '10px 14px' }}>
@@ -120,7 +117,6 @@ export default function GroupsPage() {
             </div>
           )}
 
-          {/* ── Empty state ── */}
           {groups.length === 0 && !showCreate && (
             <div style={{ margin: '60px 16px 0', textAlign: 'center', color: 'var(--ink3,#999)' }}>
               <div style={{ fontSize: 48, marginBottom: 14 }}>👥</div>
@@ -141,7 +137,6 @@ export default function GroupsPage() {
             </div>
           )}
 
-          {/* ── Groups list ── */}
           {groups.map(g => {
             const balances   = calcBalances(g)
             const youOwe     = balances.filter(b => b.from === 'You').reduce((s, b) => s + b.amount, 0)
@@ -190,29 +185,6 @@ export default function GroupsPage() {
                     )}
                   </div>
                 </div>
-
-                <div style={{ display: 'flex', marginTop: 10, alignItems: 'center' }}>
-                  {g.members.slice(0, 5).map((m, i) => (
-                    <div key={m} style={{
-                      width: 26, height: 26, borderRadius: '50%',
-                      background: ['#1D9E75','#D85A30','#6366F1','#F59E0B','#EC4899'][i % 5],
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 11, fontWeight: 700, color: '#fff',
-                      border: '2px solid var(--surface,#fff)',
-                      marginLeft: i > 0 ? -8 : 0,
-                    }}>{m[0].toUpperCase()}</div>
-                  ))}
-                  {g.members.length > 5 && (
-                    <div style={{
-                      width: 26, height: 26, borderRadius: '50%', background: '#e5e7eb',
-                      fontSize: 10, fontWeight: 700, color: '#666',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      marginLeft: -8, border: '2px solid var(--surface,#fff)',
-                    }}>+{g.members.length - 5}</div>
-                  )}
-                  <div style={{ flex: 1 }} />
-                  <div style={{ fontSize: 11, color: 'var(--ink3,#999)' }}>{g.createdAt}</div>
-                </div>
               </div>
             )
           })}
@@ -221,143 +193,67 @@ export default function GroupsPage() {
         <BottomNav />
       </div>
 
-      {/* ✅ MODAL — completely outside page-shell, no event interference */}
       {showCreate && (
         <div
-          className="group-form-modal"
           onMouseDown={(e) => { if (e.target === e.currentTarget) handleCancel() }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100vh',
+            background: 'rgba(0,0,0,0.6)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999,
+            padding: 20
+          }}
         >
-          <div className="group-form-inner">
-
+          <div
+            style={{
+              width: '100%',
+              maxWidth: 420,
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              borderRadius: 20,
+              padding: 20,
+              background: 'var(--surface)',
+              boxShadow: '0 25px 60px rgba(0,0,0,0.4)'
+            }}
+          >
             <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>
               🆕 New Group
             </div>
 
-            {/* Emoji picker */}
-            <div style={{ fontSize: 12, color: 'var(--ink3,#999)', marginBottom: 6 }}>
-              Pick an icon
-            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
               {GROUP_EMOJIS.map(e => (
-                <button
-                  key={e}
-                  type="button"
-                  onClick={() => setEmoji(e)}
-                  style={{
-                    width: 38, height: 38, fontSize: 20,
-                    border: emoji === e ? '2px solid #1D9E75' : '1.5px solid var(--border,#e5e7eb)',
-                    borderRadius: 10,
-                    background: emoji === e ? '#e8f5f0' : 'var(--bg,#f5f5f5)',
-                  }}
-                >{e}</button>
+                <button key={e} onClick={() => setEmoji(e)} style={{
+                  width: 38, height: 38, fontSize: 20,
+                  border: emoji === e ? '2px solid #1D9E75' : '1.5px solid #e5e7eb',
+                  borderRadius: 10,
+                  background: emoji === e ? '#e8f5f0' : '#f5f5f5',
+                }}>{e}</button>
               ))}
             </div>
 
-            {/* Group name */}
-            <div style={{ fontSize: 12, color: 'var(--ink3,#999)', marginBottom: 6 }}>
-              Group name
-            </div>
-            <input
-              type="text"
-              autoFocus
-              value={groupName}
-              onChange={e => setGroupName(e.target.value)}
-              placeholder="e.g. Goa Trip, Flat expenses"
-            />
+            <input value={groupName} onChange={e => setGroupName(e.target.value)} placeholder="Group name" />
 
-            {/* Members */}
-            <div style={{ fontSize: 12, color: 'var(--ink3,#999)', marginBottom: 8 }}>
-              Members ({members.length}/8) — add at least 1 friend
-            </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+            <div style={{ marginTop: 10 }}>
               {members.map(m => (
-                <div key={m} style={{
-                  display: 'flex', alignItems: 'center', gap: 4,
-                  background: m === 'You' ? '#e8f5f0' : 'var(--bg,#f5f5f5)',
-                  border: `1.5px solid ${m === 'You' ? '#1D9E75' : 'var(--border,#e5e7eb)'}`,
-                  borderRadius: 20, padding: '5px 10px', fontSize: 13,
-                }}>
-                  <span style={{
-                    color: m === 'You' ? '#1D9E75' : 'var(--ink1,#111)',
-                    fontWeight: m === 'You' ? 700 : 400,
-                  }}>
-                    {m === 'You' ? '👤 You' : m}
-                  </span>
-                  {m !== 'You' && (
-                    <button
-                      type="button"
-                      onClick={() => removeMember(m)}
-                      style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        color: '#999', fontSize: 14, padding: 0, lineHeight: 1,
-                      }}
-                    >✕</button>
-                  )}
-                </div>
+                <div key={m}>{m}</div>
               ))}
             </div>
 
-            {members.length < 8 && (
-              <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-                <input
-                  type="text"
-                  value={memberInput}
-                  onChange={e => setMemberInput(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); addMember() } }}
-                  placeholder="Friend's name e.g. Riya"
-                  style={{ marginBottom: 0 }}
-                />
-                <button
-                  type="button"
-                  onClick={addMember}
-                  style={{
-                    background: '#e8f5f0', border: '1.5px solid #1D9E75',
-                    color: '#1D9E75', borderRadius: 10, padding: '9px 14px',
-                    fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap',
-                    flexShrink: 0,
-                  }}
-                >+ Add</button>
-              </div>
-            )}
-
-            {members.length < 2 && (
-              <div style={{
-                fontSize: 12, color: '#F59E0B', marginBottom: 10,
-                padding: '6px 10px', background: '#FAEEDA', borderRadius: 8,
-              }}>
-                ⚠️ Add at least 1 friend to create a group
-              </div>
-            )}
-
-            <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
-              <button
-                type="button"
-                onClick={handleCancel}
-                style={{
-                  flex: 1, padding: '11px', borderRadius: 12,
-                  border: '1px solid var(--border,#e5e7eb)',
-                  background: 'var(--surface,#fff)',
-                  fontSize: 13, fontWeight: 600, color: 'var(--ink2,#555)',
-                }}
-              >Cancel</button>
-              <button
-                type="button"
-                onClick={handleCreate}
-                disabled={!groupName.trim() || members.length < 2}
-                style={{
-                  flex: 2, padding: '11px', borderRadius: 12, border: 'none',
-                  background: groupName.trim() && members.length >= 2 ? '#1D9E75' : '#ccc',
-                  fontSize: 13, fontWeight: 700, color: '#fff',
-                  cursor: groupName.trim() && members.length >= 2 ? 'pointer' : 'not-allowed',
-                }}
-              >
-                {members.length < 2
-                  ? 'Add a friend first'
-                  : `Create "${groupName || 'Group'}" →`}
-              </button>
+            <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+              <input value={memberInput} onChange={e => setMemberInput(e.target.value)} />
+              <button onClick={addMember}>Add</button>
             </div>
 
+            <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+              <button onClick={handleCancel}>Cancel</button>
+              <button onClick={handleCreate}>Create</button>
+            </div>
           </div>
         </div>
       )}
